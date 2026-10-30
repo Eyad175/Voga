@@ -88,19 +88,19 @@ export default function Home() {
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }} className="flex flex-wrap gap-4">
-              <Link href="/menu">
+              <Link href="/intro">
                 <motion.button whileHover={{ scale: 1.015 }} whileTap={{ scale: 0.985 }} className="group relative px-9 md:px-11 py-4 rounded-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-voga-red to-voga-orange" />
                   <div className="absolute inset-0 bg-gradient-to-r from-voga-orange to-voga-yellow translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-[900ms] ease-out" />
                   <span className="relative z-10 flex items-center gap-3 text-xs uppercase tracking-[0.38em]">
-                    القائمة
+                    اطلب الآن
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-700" />
                   </span>
                 </motion.button>
               </Link>
-              <Link href="/intro">
+              <Link href="/menu">
                 <motion.button whileHover={{ scale: 1.015 }} whileTap={{ scale: 0.985 }} className="px-9 md:px-11 py-4 rounded-full border border-white/14 text-xs uppercase tracking-[0.38em] hover:bg-white/5 hover:border-white/32 transition-all duration-700">
-                  اختيار الطعام
+                  تصفح القائمة
                 </motion.button>
               </Link>
             </motion.div>
@@ -115,6 +115,39 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-14 pb-24">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-white/35 mb-4">Signature Selection</p>
+            <h3 className="text-[clamp(2.2rem,6vw,5rem)] font-extrabold tracking-[-0.03em]">أطباق مختارة</h3>
+          </div>
+          <Link href="/menu" className="text-xs uppercase tracking-[0.35em] text-white/55 hover:text-white transition-colors duration-500">عرض الكل</Link>
+        </motion.div>
+        <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+          {[
+            { img: "/burgur.png", name: "SIGNATURE BURGER", price: "249" },
+            { img: "/pitzaa.png", name: "WOOD FIRED PIZZA", price: "279" },
+            { img: "/burgur.png", name: "DOUBLE STACK", price: "299" },
+          ].map((item, idx) => (
+            <motion.div key={item.name} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: idx * 0.12 }} whileHover={{ y: -10 }} className="group relative overflow-hidden rounded-[28px] border border-white/10">
+              <div className="relative aspect-[4/3]">
+                <Image src={item.img} alt={item.name} fill className="object-cover scale-110 group-hover:scale-[1.16] transition-transform duration-[1400ms]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.4em] text-white/40 mb-2">VOGA</p>
+                  <p className="text-lg md:text-xl font-extrabold tracking-[0.18em]">{item.name}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-lg font-semibold">{item.price} <span className="text-sm text-white/40">EGP</span></p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
