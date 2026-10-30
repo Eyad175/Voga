@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "skills": {
+    "animate": {
+      "source": "educlopez/ui-craft",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/animate/SKILL.md",
+      "computedHash": "7002b020273ffe471508bea7413d359a235df7a32a7c7deea57cc2e9a17046e4"
+    },
+    "context7-mcp": {
+      "source": "upstash/context7",
+      "sourceType": "github",
+      "skillPath": "skills/context7-mcp/SKILL.md",
+      "computedHash": "a696522f8af9566bd6c457f0feb905b1dbfec43ac3b9064a944acdb351b48f38"
+    },
+    "design-mobile-apps": {
+      "source": "designed-by-ai/skills",
+      "sourceType": "github",
+      "skillPath": "skills/design-mobile-apps/SKILL.md",
+      "computedHash": "6d6ed68c53ac9f5564aea489ededb387b8cdf29ffa6f78f2a1fa449f86f19e16"
+    },
+    "design-taste": {
+      "source": "h3nryprod01/design-taste",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "1e311c59c8eca1afa9e983ff76faa4842efbd59a12161ff7278e6b3d22fc6768"
+    },
+    "design-with-taste": {
+      "source": "cristicretu/family-taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/design-with-taste/SKILL.md",
+      "computedHash": "37f095341c330bb3446ae0200dfbbdc1994f338d3184e759f8f69ff02d124ebd"
+    },
+    "find-docs": {
+      "source": "upstash/context7",
+      "sourceType": "github",
+      "skillPath": "skills/find-docs/SKILL.md",
+      "computedHash": "e4a9a707d8e5d575d166a175f2fec66e0a13de46597f7dbc910c735ccf01bb93"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "computedHash": "b146008599c31057cef1c145774cea5d5afb30e8f43fa802e47a4b461419aaaf"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
+    },
+    "frontend-enhancer": {
+      "source": "ailabs-393/ai-labs-claude-skills",
+      "sourceType": "github",
+      "skillPath": "packages/skills/frontend-enhancer/SKILL.md",
+      "computedHash": "ce3f050632febc5a0b58e78ef23589ea513af16150f6dfe053a2b26dd20c0ed8"
+    },
+    "frontend-god-mode": {
+      "source": "shawnchee/frontend-god-mode",
+      "sourceType": "github",
+      "skillPath": "frontend-god-mode/SKILL.md",
+      "computedHash": "4f7082d833059d28a278cb45eb31daceb21024b676026ab5c39b5b7408b7f126"
+    },
+    "nextjs-supabase-auth": {
+      "source": "sickn33/agentic-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextjs-supabase-auth/SKILL.md",
+      "computedHash": "a80aef95c506377dd0d055d5c9ca0f18a9ef77a7cf86a576c66b38aed592ffed"
+    },
+    "nextjs-typescript-tailwindcss-supabase": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "skillPath": "nextjs-typescript-tailwindcss-supabase/SKILL.md",
+      "computedHash": "9b133299f61488992acec74bcef74b498c60fd3245654f26fae73c1834d5a550"
+    },
+    "supabase": {
+      "source": "supabase/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/supabase/SKILL.md",
+      "computedHash": "211141fd078b4b3645803868528d54221bc7755d24d5c8af45a366785c151dba"
+    },
+    "ui-design": {
+      "source": "pproenca/dot-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.curated/ui-design/SKILL.md",
+      "computedHash": "9bb6421762ba99bbf0e5dc3b32ce0da9547ce884a0f712f4c6f528abe735ed47"
+    }
+  }
+}
