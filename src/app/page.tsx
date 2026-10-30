@@ -353,7 +353,7 @@ export default function Home() {
           <p className="text-white/60 text-lg">أكثر الأصناف مبيعاً لدى عملائنا الكرام</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:gridcols: 3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3].map((item, index) => (
             <motion.div
               key={item}
@@ -366,13 +366,13 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-voga-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative p-6 space-y-4">
-                <div className "relative h-48 flex items-center justify-center">
+                <div className="relative h-48 flex items-center justify-center">
                   <div className="w-40 h-40 bg-gradient-to-br from-voga-red/20 to-voga-orange/20 rounded-full flex items-center justify-center">
                     <span className="text-6xl">🍔</span>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold mb-2">VOGA Special</h 4>
+                  <h4 className="text-xl font-bold mb-2">VOGA Special</h4>
                   <p className="text-white/60 text-sm">لحم بقري فخر، جبن شيدر، صوص خاص، خضار طازجة</p>
                 </div>
                 <div className="flex items-center justify-between">
