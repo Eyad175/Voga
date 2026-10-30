@@ -2,224 +2,172 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ShoppingBag, Menu, ArrowLeft } from "lucide-react";
+import { ShoppingBag, Menu, ArrowLeft, Star, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+const reviews = [
+  { name: "أحمد م.", rating: 5, text: "أجمل برجر جربته، جودة عالية جداً وخدمة ممتازة" },
+  { name: "سارة ك.", rating: 5, text: "التوصيل سريع جداً والطعم فوق الخيال" },
+  { name: "محمود ع.", rating: 5, text: "بروست رهيب، فعلاً يستاهل السعر" },
+];
+
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 30, stiffness: 120 };
+  const springConfig = { damping: 35, stiffness: 110 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
-
-  const rotateX = useTransform(springY, [-400, 400], [12, -12]);
-  const rotateY = useTransform(springX, [-400, 400], [-12, 12]);
-  const translateX = useTransform(springX, [-400, 400], [-15, 15]);
-  const translateY = useTransform(springY, [-400, 400], [-10, 10]);
+  const rotateX = useTransform(springY, [-500, 500], [14, -14]);
+  const rotateY = useTransform(springX, [-500, 500], [-14, 14]);
+  const tx = useTransform(springX, [-500, 500], [-12, 12]);
+  const ty = useTransform(springY, [-500, 500], [-8, 8]);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      mouseX.set(e.clientX - centerX);
-      mouseY.set(e.clientY - centerY);
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const handle = (e: MouseEvent) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      mouseX.set(e.clientX - cx);
+      mouseY.set(e.clientY - cy);
     };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handle);
+    return () => window.removeEventListener("mousemove", handle);
   }, [mouseX, mouseY]);
 
   return (
-    <main className="min-h-[100dvh] relative overflow-hidden">
+    <main className="min-h-[100dvh] relative overflow-x-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,30,30,0.15),rgba(0,0,0,0))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,79,0,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_-10%,rgba(255,30,30,0.16),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgba(255,79,0,0.09),transparent_55%)]" />
       </div>
 
-      <header className="relative z-50 flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-16 py-5 md:py-7">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="flex items-center gap-3"
-        >
-          <div className="relative">
-            <div className="w-11 h-11 bg-gradient-to-br from-voga-red to-voga-orange rounded-xl flex items-center justify-center shadow-[0_0_60px_rgba(255,30,30,0.4)]">
-              <span className="text-white font-display font-black text-lg tracking-tight">V</span>
-            </div>
+      <header className="relative z-50 flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-14 py-5 md:py-6">
+        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="flex items-center gap-3">
+          <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-voga-red to-voga-orange flex items-center justify-center shadow-[0_0_70px_rgba(255,30,30,0.38)]">
+            <span className="font-display font-black text-lg">V</span>
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-display font-black tracking-[0.3em] uppercase">
-            VOGA
-          </h1>
+          <h1 className="text-lg md:text-xl lg:text-2xl font-display font-black tracking-[0.5em] uppercase">VOGA</h1>
         </motion.div>
 
-        <motion.nav
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="hidden lg:flex items-center gap-10"
-        >
-          <Link href="/" className="text-sm uppercase tracking-[0.2em] text-white hover:text-voga-red transition-colors duration-300">
-            الرئيسية
-          </Link>
-          <Link href="/menu" className="text-sm uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300">
-            القائمة
-          </Link>
-          <Link href="/menu" className="text-sm uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300">
-            عنا
-          </Link>
-          <Link href="/menu" className="text-sm uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300">
-            تواصل
-          </Link>
+        <motion.nav initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1 }} className="hidden lg:flex items-center gap-9">
+          <Link href="/" className="text-xs uppercase tracking-[0.3em]">الرئيسية</Link>
+          <Link href="/menu" className="text-xs uppercase tracking-[0.3em] text-white/55 hover:text-white transition-colors duration-500">القائمة</Link>
+          <Link href="#reviews" className="text-xs uppercase tracking-[0.3em] text-white/55 hover:text-white transition-colors duration-500">التقييمات</Link>
+          <Link href="/auth" className="text-xs uppercase tracking-[0.3em] text-white/55 hover:text-white transition-colors duration-500">تسجيل الدخول</Link>
         </motion.nav>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="flex items-center gap-3"
-        >
-          <button className="lg:hidden p-2.5 hover:bg-white/5 rounded-xl transition-colors duration-300">
+        <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="flex items-center gap-2">
+          <Link href="/auth" className="hidden md:flex items-center gap-2 px-5 py-2.5 border border-white/12 rounded-full text-xs uppercase tracking-[0.28em] hover:bg-white/5 hover:border-white/30 transition-all duration-500">
+            <User className="w-4 h-4" />
+            دخول
+          </Link>
+          <Link href="/cart" className="relative p-2.5 hover:bg-white/5 rounded-xl transition-colors duration-500">
+            <ShoppingBag className="w-5 h-5" />
+          </Link>
+          <button className="lg:hidden p-2.5 hover:bg-white/5 rounded-xl">
             <Menu className="w-5 h-5" />
           </button>
-          <Link href="/cart" className="relative group p-2.5 hover:bg-white/5 rounded-xl transition-colors duration-300">
-            <ShoppingBag className="w-5 h-5" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-voga-red rounded-full flex items-center justify-center text-[10px] font-bold">
-              0
-            </span>
-          </Link>
         </motion.div>
       </header>
 
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-6 md:pt-10 lg:pt-14 pb-16">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          <div className="lg:col-span-6 space-y-8 md:space-y-10">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="space-y-6"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/10 rounded-full backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-voga-red shadow-[0_0_20px_rgba(255,30,30,0.8)]" />
-                <span className="text-xs uppercase tracking-[0.25em] text-white/70">Artisan Crafted • Premium Cuts</span>
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-14 pt-6 md:pt-10 lg:pt-16 pb-20">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-6 space-y-8">
+            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.15 }} className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/12 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-voga-red shadow-[0_0_18px_rgba(255,30,30,0.9)]" />
+                <span className="text-[10px] uppercase tracking-[0.4em] text-white/60">Crafted To Impress</span>
               </div>
-
-              <h2 className="text-[clamp(3rem,9vw,9rem)] font-display font-black leading-[0.85] tracking-[-0.02em]">
-                <span className="block">THE</span>
-                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40">
-                  ULTIMATE
-                </span>
-                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-voga-red via-voga-orange to-voga-yellow">
-                  BURGER
-                </span>
+              <h2 className="text-[clamp(3.2rem,10vw,10rem)] font-display font-black leading-[0.82] tracking-[-0.03em]">
+                <span className="block">FOR THE</span>
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30">ONES WHO</span>
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-voga-red via-voga-orange to-voga-yellow">DEMAND MORE</span>
               </h2>
-
-              <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed">
-                برجر فاخر مصنوع من أجود قطع اللحم، مشوي بعناية، ومُقدم بتفاصيل لا تُضاهى
+              <p className="text-base md:text-lg text-white/55 max-w-lg leading-relaxed">
+                تذوق الفخامة في كل لقمة. برجر، بروست، بيتزا بأعلى معايير الطهي وأرقى التفاصيل
               </p>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex flex-wrap items-center gap-4"
-            >
+            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }} className="flex flex-wrap gap-4">
               <Link href="/menu">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative px-10 py-4 overflow-hidden rounded-full"
-                >
+                <motion.button whileHover={{ scale: 1.015 }} whileTap={{ scale: 0.985 }} className="group relative px-9 md:px-11 py-4 rounded-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-voga-red to-voga-orange" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-voga-orange to-voga-yellow translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
-                  <span className="relative z-10 flex items-center gap-3 text-sm uppercase tracking-[0.3em] font-medium">
-                    اطلب الآن
-                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-voga-orange to-voga-yellow translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-[900ms] ease-out" />
+                  <span className="relative z-10 flex items-center gap-3 text-xs uppercase tracking-[0.38em]">
+                    اكتشف القائمة
+                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-700" />
                   </span>
                 </motion.button>
               </Link>
-
-              <Link href="/menu">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-10 py-4 border border-white/15 rounded-full text-sm uppercase tracking-[0.3em] hover:bg-white/5 hover:border-white/30 transition-all duration-500"
-                >
-                  عرض القائمة
+              <Link href="/intro">
+                <motion.button whileHover={{ scale: 1.015 }} whileTap={{ scale: 0.985 }} className="px-9 md:px-11 py-4 rounded-full border border-white/14 text-xs uppercase tracking-[0.38em] hover:bg-white/5 hover:border-white/32 transition-all duration-700">
+                  تجربة الدخول
                 </motion.button>
               </Link>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex items-center gap-10 pt-4"
-            >
-              <div>
-                <p className="text-3xl md:text-4xl font-display font-bold">100%</p>
-                <p className="text-xs uppercase tracking-[0.25em] text-white/40 mt-2">لحم طازج</p>
-              </div>
-              <div className="w-px h-12 bg-white/10" />
-              <div>
-                <p className="text-3xl md:text-4xl font-display font-bold">30-45</p>
-                <p className="text-xs uppercase tracking-[0.25em] text-white/40 mt-2">دقيقة توصيل</p>
-              </div>
-              <div className="w-px h-12 bg-white/10" />
-              <div>
-                <p className="text-3xl md:text-4xl font-display font-bold">+1000</p>
-                <p className="text-xs uppercase tracking-[0.25em] text-white/40 mt-2">عميل راضي</p>
-              </div>
-            </motion.div>
           </div>
-
           <div className="lg:col-span-6 relative">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative flex items-center justify-center"
-            >
-              <motion.div
-                style={{
-                  rotateX,
-                  rotateY,
-                  x: translateX,
-                  y: translateY,
-                  transformStyle: "preserve-3d",
-                }}
-                className="relative w-full max-w-[620px]"
-              >
-                <motion.div
-                  animate={{
-                    y: [0, -18, 0],
-                  }}
-                  transition={{
-                    duration: 7,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="relative"
-                >
-                  <div className="absolute -inset-20 bg-[radial-gradient(circle,rgba(255,79,0,0.25),transparent_70%)] blur-3xl" />
-                  <Image
-                    src="/burgur.png"
-                    alt="VOGA Luxury Burger"
-                    width={1200}
-                    height={1200}
-                    priority
-                    className="relative w-full h-auto drop-shadow-[0_80px_160px_rgba(255,40,0,0.25)]"
-                  />
+            <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.4, delay: 0.25 }} className="relative flex items-center justify-center">
+              <motion.div style={{ rotateX, rotateY, x: tx, y: ty, transformStyle: "preserve-3d" }} className="relative w-full max-w-[680px]">
+                <motion.div animate={{ y: [0, -16, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}>
+                  <div className="absolute -inset-24 bg-[radial-gradient(circle,rgba(255,60,0,0.22),transparent_72%)] blur-[140px]" />
+                  <Image src="/burgur.png" alt="VOGA Signature Burger" width={1400} height={1400} priority className="relative w-full h-auto drop-shadow-[0_100px_200px_rgba(255,40,0,0.24)]" />
                 </motion.div>
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-14 pb-24">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-white/35 mb-4">Signature Selection</p>
+            <h3 className="text-[clamp(2.2rem,6vw,5rem)] font-display font-black tracking-[-0.02em]">مختاراتنا المميزة</h3>
+          </div>
+          <Link href="/menu" className="text-xs uppercase tracking-[0.35em] text-white/55 hover:text-white transition-colors duration-500">كل القائمة</Link>
+        </motion.div>
+        <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+          {[
+            { img: "/burgur.png", name: "SIGNATURE BURGER", price: "249" },
+            { img: "/brost.png", name: "CRISPY BROST", price: "229" },
+            { img: "/pitzaa.png", name: "WOOD FIRED PIZZA", price: "279" },
+          ].map((item, idx) => (
+            <motion.div key={item.name} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: idx * 0.12 }} whileHover={{ y: -10 }} className="group relative overflow-hidden rounded-[28px] border border-white/10">
+              <div className="relative aspect-[4/3]">
+                <Image src={item.img} alt={item.name} fill className="object-cover scale-110 group-hover:scale-[1.16] transition-transform duration-[1400ms] ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.4em] text-white/40 mb-2">VOGA</p>
+                  <p className="text-lg md:text-xl font-display font-bold tracking-[0.18em]">{item.name}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-lg font-display">{item.price} <span className="text-sm text-white/40">EGP</span></p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section id="reviews" className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-14 pb-28">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className="text-center mb-10 md:mb-14">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-white/35 mb-4">Testimonials</p>
+          <h3 className="text-[clamp(2rem,6vw,4.8rem)] font-display font-black tracking-[-0.02em]">آراء عملائنا</h3>
+        </motion.div>
+        <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+          {reviews.map((rev, idx) => (
+            <motion.div key={rev.name} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: idx * 0.12 }} className="relative p-7 md:p-8 rounded-[26px] border border-white/10 bg-gradient-to-b from-white/[0.01] to-transparent">
+              <div className="flex items-center gap-1 mb-5">
+                {[...Array(rev.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-voga-yellow text-voga-yellow" />
+                ))}
+              </div>
+              <p className="text-white/70 leading-relaxed mb-6">"{rev.text}"</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-white/40">{rev.name}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
     </main>
