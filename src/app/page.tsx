@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ShoppingBag, Menu, ArrowLeft, Star, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useCartStore } from "@/store/cart";
 
 const reviews = [
   { name: "أحمد م.", rating: 5, text: "أجمل برجر جربته، جودة عالية جداً وخدمة راقية" },
@@ -15,6 +16,7 @@ const reviews = [
 export default function Home() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const count = useCartStore((state) => state.getCount());
   const springConfig = { damping: 38, stiffness: 100 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
@@ -63,6 +65,11 @@ export default function Home() {
           </Link>
           <Link href="/cart" className="relative p-2.5 hover:bg-white/5 rounded-xl transition-colors duration-500">
             <ShoppingBag className="w-5 h-5" />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-voga-red rounded-full flex items-center justify-center text-[9px] font-bold">
+                {count}
+              </span>
+            )}
           </Link>
           <button className="lg:hidden p-2.5 hover:bg-white/5 rounded-xl">
             <Menu className="w-5 h-5" />
