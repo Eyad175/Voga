@@ -1,34 +1,22 @@
 import type { Metadata } from "next";
-import { Tahoma } from "next/font/google";
-import localFont from "next/font/local";
+import { Exo_2, Inter } from "next/font/google";
 import "./globals.css";
 
-const display = localFont({
-  src: [
-    {
-      path: "./fonts/GeistVF.woff",
-      weight: "100 900",
-      style: "normal",
-    },
-  ],
-  variable: "--font-display",
+const exo = Exo_2({ 
+  subsets: ["latin"],
+  variable: "--font-exo",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const body = localFont({
-  src: [
-    {
-      path: "./fonts/GeistMonoVF.woff",
-      weight: "100 900",
-      style: "normal",
-    },
-  ],
-  variable: "--font-body",
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "VOGA | Luxury Food Experience",
-  description: "VOGA - تجربة طعام فاخرة، برجر، بروست، بيتزا بأعلى مستويات الجودة",
-  keywords: ["VOGA", "برجر", "بروست", "بيتزا", "طعام فاخر", "توصيل"],
+  title: "VOGA | Luxury Burger Platform",
+  description: "منصة توصيل برجر فاخر أونلاين - VOGA. برجر فاخر، طعم لا يقاوم، توصيل سريع.",
+  keywords: ["برجر", "برجر فاخر", "توصيل طعام", "VOGA", "Luxury Burger"],
 };
 
 export default function RootLayout({
@@ -38,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${display.variable} ${body.variable} font-display antialiased`}>
+      <body className={`${exo.variable} ${inter.variable} font-body antialiased`}>
         {children}
       </body>
     </html>
