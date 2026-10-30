@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VOGA | Luxury Burger Platform",
-  description: "منصة توصيل برجر فاخر أونلاين - VOGA. برجر فاخر، طعم لا يقاوم، توصيل سريع.",
-  keywords: ["برجر", "برجر فاخر", "توصيل طعام", "VOGA", "Luxury Burger"],
+  title: "VOGA | Luxury Food Experience",
+  description: "VOGA - تجربة طعام فاخرة، برجر، بروست، بيتزا بأعلى مستويات الجودة",
+  keywords: ["VOGA", "برجر", "بروست", "بيتزا", "طعام فاخر", "توصيل"],
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${exo.variable} ${inter.variable} font-body antialiased`}>
+      <body className={`${exo.variable} ${inter.variable} font-[family-name:var(--font-exo)] antialiased`}>
         {children}
       </body>
     </html>
